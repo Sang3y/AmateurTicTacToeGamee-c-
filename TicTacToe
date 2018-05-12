@@ -1,0 +1,117 @@
+//Tic Tac Toe Game in C++
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+    char tic[9];
+    int player1, player2;
+    int count = 0;
+    
+    cout<<"Welcome to Tic Tac Toe game"<<endl;
+    cout<<"You are X"<<endl;
+    cout<<"Bot is O"<<endl;
+    cout<<"Your command numbers are"<<endl;
+       cout<<"-------------"<<endl;
+       cout<<"| 1 | 2 | 3 |"<<endl;
+       cout<<"-------------"<<endl;
+       cout<<"| 4 | 5 | 6 |"<<endl;
+       cout<<"-------------"<<endl;
+       cout<<"| 7 | 8 | 9 |"<<endl;
+       cout<<"-------------"<<endl;
+       
+    while(count!=9)
+    {
+       cout<<endl;
+       cout<<"you're X enter your number: ";
+       cin>>player1;
+       
+       while(tic[player1-1]=='X'||tic[player1-1]=='O')
+       {
+           cout<<"That command ("<< player1 <<") is already taken,try again!!"<<endl;
+           cout<<"Enter your command"<<endl;
+           cin>>player1;
+       }
+       
+      tic[player1-1]='X';
+       
+       
+       cout<<"-------------"<<endl;
+       
+       for(int i =0; i<9; i++)
+       {
+            cout<<"|";
+           if(tic[i]=='X')
+           {
+               cout<<" X ";
+           }
+           else if(tic[i]=='O')
+           {
+               cout<<" O ";
+           }
+           else cout<<" "<<i+1<<" ";
+
+           if(i==2||i==5||i==8){cout<<"|"<<endl;cout<<"-------------"<<endl;}
+       }
+       
+        if((tic[0]=='X'&&tic[1]=='X'&&tic[2]=='X')||
+        (tic[6]=='X'&&tic[7]=='X'&&tic[8]=='X')||
+        (tic[0]=='X'&&tic[3]=='X'&&tic[6]=='X')||
+        (tic[2]=='X'&&tic[5]=='X'&&tic[8]=='X')||
+        (tic[0]=='X'&&tic[4]=='X'&&tic[8]=='X')||
+        (tic[2]=='X'&&tic[4]=='X'&&tic[6]=='X')||
+        (tic[1]=='X'&&tic[4]=='X'&&tic[7]=='X')||
+        (tic[3]=='X'&&tic[4]=='X'&&tic[5]=='X'))
+        {
+            cout<<"Congratulation, You won!!!";
+            break;
+        }
+        
+        
+       cout<<endl;
+       cout<<endl;
+    
+       cout<<"It's bot's turn"<<endl;
+               player2 = rand() %10;
+
+     
+       while(tic[player2-1]=='X'||tic[player2-1]=='O')
+       {
+           player2 = rand() %10;
+       }
+       cout<<"Bot picked ("<<player2<<")"<<endl;
+
+       tic[player2-1]='O';
+       cout<<"-------------"<<endl;
+       
+       for(int i =0; i<9; i++)
+       {
+            cout<<"|";
+           if(tic[i]=='O')
+           {
+               cout<<" O ";
+           }
+           else if(tic[i]=='X')
+           {
+               cout<<" X ";
+           }
+           else cout<<" "<<i+1<<" ";
+           
+           if(i==2||i==5||i==8){cout<<"|"<<endl;cout<<"-------------"<<endl;}
+       }
+       if((tic[0]=='O'&&tic[1]=='O'&&tic[2]=='O')||
+          (tic[6]=='O'&&tic[7]=='O'&&tic[8]=='O')||
+          (tic[0]=='O'&&tic[3]=='O'&&tic[6]=='O')||
+          (tic[2]=='O'&&tic[5]=='O'&&tic[8]=='O')||
+          (tic[0]=='O'&&tic[4]=='O'&&tic[8]=='O')||
+          (tic[2]=='O'&&tic[4]=='O'&&tic[6]=='O')||
+          (tic[1]=='O'&&tic[4]=='O'&&tic[7]=='O')||
+          (tic[3]=='O'&&tic[4]=='O'&&tic[5]=='O'))
+        {
+            cout<<"You lost, BOT won!!!";
+            break;
+        }
+       count++; 
+    }
+}
